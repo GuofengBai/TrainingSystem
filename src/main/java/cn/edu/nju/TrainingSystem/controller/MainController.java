@@ -1,11 +1,13 @@
 package cn.edu.nju.TrainingSystem.controller;
 
+import cn.edu.nju.TrainingSystem.entity.User;
 import cn.edu.nju.TrainingSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,13 +21,22 @@ public class MainController {
     private UserService userService;
 
     @RequestMapping("")
-    public String index(){
+    public String home(){
+        List<User> us = new ArrayList<User>();
+        User u = new User();
+        u.setName("axy14");
+        us.add(u);
+        u = new User();
+        u.setName("cjh14");
+        us.add(u);
+        userService.saveUsers(us);
         return "index";
     }
 
     @RequestMapping("/json")
     @ResponseBody
-    public List<String> json(){
+    public List<User> json(){
         return userService.getAllUsernames();
     }
+
 }
