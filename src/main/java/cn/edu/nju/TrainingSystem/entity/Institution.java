@@ -1,7 +1,6 @@
 package cn.edu.nju.TrainingSystem.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,7 +8,7 @@ import javax.persistence.Table;
  * Created by baiguofeng on 2017/3/10.
  */
 @Entity
-@Table(name="institution")
+@Table(name = "institution")
 public class Institution {
     private int id;
     private String password;
@@ -17,7 +16,6 @@ public class Institution {
     private Double balance;
 
     @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }

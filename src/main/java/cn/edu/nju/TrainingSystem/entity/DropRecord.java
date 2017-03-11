@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Created by baiguofeng on 2017/3/10.
  */
 @Entity
-@Table(name="drop_record")
+@Table(name = "drop_record")
 @IdClass(StudentCoursePK.class)
 public class DropRecord {
     private int studentId;

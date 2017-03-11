@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Created by baiguofeng on 2017/3/10.
  */
 @Entity
-@Table(name="student_refund")
+@Table(name = "student_refund")
 public class StudentRefund {
     private int id;
     private int studentId;

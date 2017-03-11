@@ -10,7 +10,7 @@ import java.sql.Date;
  * Created by baiguofeng on 2017/3/10.
  */
 @Entity
-@Table(name="course")
+@Table(name = "course")
 public class Course {
     private int id;
     private int institutionId;

@@ -1,7 +1,6 @@
 package cn.edu.nju.TrainingSystem.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
@@ -10,7 +9,7 @@ import java.sql.Date;
  * Created by baiguofeng on 2017/3/10.
  */
 @Entity
-@Table(name="student")
+@Table(name = "student")
 public class Student {
     private int id;
     private String password;
@@ -23,7 +22,6 @@ public class Student {
     private String state;
 
     @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -96,19 +94,58 @@ public class Student {
         this.state = state;
     }
 
-    public double discount(){
-        double discount=1;
-        if(level==5){
-            discount=0.75;
-        }else if(level==4){
-            discount=0.8;
-        }else if(level==3){
-            discount=0.85;
-        }else if(level==2){
-            discount=0.9;
-        }else if(level==1){
-            discount=0.95;
+    public double discount() {
+        double discount = 1;
+        if (level == 5) {
+            discount = 0.75;
+        } else if (level == 4) {
+            discount = 0.8;
+        } else if (level == 3) {
+            discount = 0.85;
+        } else if (level == 2) {
+            discount = 0.9;
+        } else if (level == 1) {
+            discount = 0.95;
         }
         return discount;
     }
+
+    public boolean income(double income) {
+        balance += income;
+        point -= income * 0.1;
+        if (point >= 1000) {
+            level = 5;
+        } else if (point >= 500) {
+            level = 4;
+        } else if (point >= 200) {
+            level = 3;
+        } else if (point >= 100) {
+            level = 2;
+        } else if (point >= 50) {
+            level = 1;
+        } else {
+            level = 0;
+        }
+        return true;
+    }
+
+    public boolean outcome(double outcome) {
+        balance -= outcome;
+        point += outcome * 0.15;
+        if (point >= 1000) {
+            level = 5;
+        } else if (point >= 500) {
+            level = 4;
+        } else if (point >= 200) {
+            level = 3;
+        } else if (point >= 100) {
+            level = 2;
+        } else if (point >= 50) {
+            level = 1;
+        } else {
+            level = 0;
+        }
+        return true;
+    }
+
 }

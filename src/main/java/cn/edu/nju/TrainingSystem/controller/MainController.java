@@ -21,7 +21,7 @@ public class MainController {
     private UserService userService;
 
     @RequestMapping("")
-    public String home(){
+    public String home() {
         List<User> us = new ArrayList<User>();
         User u = new User();
         u.setName("axy14");
@@ -35,7 +35,7 @@ public class MainController {
 
     @RequestMapping("/json")
     @ResponseBody
-    public List<User> json(){
+    public List<User> json() {
         return userService.getAllUsernames();
     }
 
