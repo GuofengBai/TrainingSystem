@@ -12,6 +12,7 @@ public class EnrollRecord {
     private int studentId;
     private int courseId;
     private byte droped;
+    private Double grades;
 
     @Id
     public int getStudentId() {
@@ -38,5 +39,13 @@ public class EnrollRecord {
 
     public void setDroped(byte droped) {
         this.droped = droped;
+    }
+
+    public Double getGrades() {
+        return grades;
+    }
+
+    public void setGrades(Double grades) {
+        this.grades = grades;
     }
 }

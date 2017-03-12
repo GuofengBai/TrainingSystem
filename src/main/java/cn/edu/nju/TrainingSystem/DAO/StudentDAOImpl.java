@@ -1,9 +1,6 @@
 package cn.edu.nju.TrainingSystem.DAO;
 
-import cn.edu.nju.TrainingSystem.entity.Course;
-import cn.edu.nju.TrainingSystem.entity.Student;
-import cn.edu.nju.TrainingSystem.entity.StudentPayment;
-import cn.edu.nju.TrainingSystem.entity.StudentRefund;
+import cn.edu.nju.TrainingSystem.entity.*;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -78,13 +75,25 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     public List<Course> getEnrolled(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c,EnrollRecord e where e.studentId=?1 and e.courseId=c.id");
+        Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c,EnrollRecord e where e.studentId=?1 and e.courseId=c.id and e.droped=0");
         query.setParameter(1, id);
         return query.list();
     }
 
     public List<Course> getDroped(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c,DropRecord d where d.studentId=?1 and d.courseId=c.id");
+        query.setParameter(1, id);
+        return query.list();
+    }
+
+    public List<EnrollRecord> getEnrollRecord(int id) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from EnrollRecord where studentId=?1 and droped=0");
+        query.setParameter(1, id);
+        return query.list();
+    }
+
+    public List<DropRecord> getDropRecord(int id) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from DropRecord where studentId=?1");
         query.setParameter(1, id);
         return query.list();
     }
@@ -116,13 +125,20 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean consume(List<StudentPayment> paymentList) {
         Session session = sessionFactory.getCurrentSession();
         Student student;
+        EnrollRecord enrollRecord;
+        StudentCoursePK pk = new StudentCoursePK();
         for (StudentPayment studentPayment : paymentList) {
             if (studentPayment.getState().equals("未完成")) {
                 studentPayment.setState("完成");
                 student = (Student) session.get(Student.class, studentPayment.getStudentId());
                 student.outcome(studentPayment.getAmount());
+                pk.setStudentId(student.getId());
+                pk.setCourseId(studentPayment.getCourseId());
+                enrollRecord = (EnrollRecord) session.get(EnrollRecord.class, pk);
+                enrollRecord.setDroped((byte) 0);
                 session.saveOrUpdate(studentPayment);
                 session.saveOrUpdate(student);
+                session.saveOrUpdate(enrollRecord);
             }
         }
         return true;

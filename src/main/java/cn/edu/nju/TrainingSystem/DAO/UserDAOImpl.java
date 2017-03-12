@@ -1,7 +1,7 @@
 package cn.edu.nju.TrainingSystem.DAO;
 
 import cn.edu.nju.TrainingSystem.entity.User;
-import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,8 +22,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public List<User> findAll() {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
-        return criteria.list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from User");
+        return query.list();
     }
 
 }

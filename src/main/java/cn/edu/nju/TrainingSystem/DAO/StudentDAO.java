@@ -1,9 +1,6 @@
 package cn.edu.nju.TrainingSystem.DAO;
 
-import cn.edu.nju.TrainingSystem.entity.Course;
-import cn.edu.nju.TrainingSystem.entity.Student;
-import cn.edu.nju.TrainingSystem.entity.StudentPayment;
-import cn.edu.nju.TrainingSystem.entity.StudentRefund;
+import cn.edu.nju.TrainingSystem.entity.*;
 
 import java.util.List;
 
@@ -27,6 +24,10 @@ public interface StudentDAO {
     List<Course> getEnrolled(int id);
 
     List<Course> getDroped(int id);
+
+    List<EnrollRecord> getEnrollRecord(int id);
+
+    List<DropRecord> getDropRecord(int id);
 
     List<StudentPayment> getExpense(int id);
 

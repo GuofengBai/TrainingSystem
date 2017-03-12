@@ -20,6 +20,7 @@ public class EditCourseRequest {
     private Double price;
     private Date startTime;
     private Date endTime;
+    private String state;
 
     @Id
     @GeneratedValue
@@ -87,4 +88,11 @@ public class EditCourseRequest {
         this.endTime = endTime;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 }

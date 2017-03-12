@@ -9,7 +9,7 @@
     <!-- 扫描controller（controller层注入） -->
     <context:component-scan base-package="cn.edu.nju.TrainingSystem.controller"/>
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
     <!-- 对模型视图添加前后缀 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/pages/"/>
@@ -23,6 +23,6 @@
 
     <mvc:resources mapping="/static/**" location="/"/>
 
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
 
 </beans>
