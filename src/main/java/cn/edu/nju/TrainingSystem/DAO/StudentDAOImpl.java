@@ -99,13 +99,13 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     public List<StudentPayment> getExpense(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from StudentPayment where studentId=?1 and state='完成'");
+        Query query = sessionFactory.getCurrentSession().createQuery("from StudentPayment where studentId=?1 and (state='完成' or state='交付')");
         query.setParameter(1, id);
         return query.list();
     }
 
     public List<StudentRefund> getRefend(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from StudentRefund where studentId=?1 and state='完成'");
+        Query query = sessionFactory.getCurrentSession().createQuery("from StudentRefund where studentId=?1 and state='交付'");
         query.setParameter(1, id);
         return query.list();
     }
@@ -141,6 +141,14 @@ public class StudentDAOImpl implements StudentDAO {
                 session.saveOrUpdate(enrollRecord);
             }
         }
+        return true;
+    }
+
+    public boolean charge(int id, Double amount) {
+        Student student = (Student) sessionFactory.getCurrentSession().get(Student.class, id);
+        student.setBalance(student.getBalance() + amount);
+        student.setLastChargeDate(new Date(System.currentTimeMillis()));
+        sessionFactory.getCurrentSession().saveOrUpdate(student);
         return true;
     }
 }

@@ -1,4 +1,4 @@
-package cn.edu.nju.TrainingSystem.DAO;
+package cn.edu.nju.TrainingSystem.service;
 
 import cn.edu.nju.TrainingSystem.entity.*;
 import cn.edu.nju.TrainingSystem.vo.StudentGradesVO;
@@ -6,9 +6,9 @@ import cn.edu.nju.TrainingSystem.vo.StudentGradesVO;
 import java.util.List;
 
 /**
- * Created by baiguofeng on 2017/3/11.
+ * Created by baiguofeng on 2017/3/13.
  */
-public interface InstitutionDAO {
+public interface InstitutionService {
 
     boolean login(String id, String password);
 

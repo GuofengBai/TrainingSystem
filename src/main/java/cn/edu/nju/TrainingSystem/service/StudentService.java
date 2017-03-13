@@ -1,15 +1,13 @@
-package cn.edu.nju.TrainingSystem.DAO;
+package cn.edu.nju.TrainingSystem.service;
 
 import cn.edu.nju.TrainingSystem.entity.*;
 
 import java.util.List;
 
 /**
- * Created by baiguofeng on 2017/3/10.
+ * Created by baiguofeng on 2017/3/13.
  */
-public interface StudentDAO {
-
-    boolean login(String id, String password);
+public interface StudentService {
 
     boolean login(int id, String password);
 
@@ -31,13 +29,14 @@ public interface StudentDAO {
 
     List<StudentPayment> getExpense(int id);
 
-    boolean consume(List<StudentPayment> paymentList);
+    List<StudentRefund> getRefend(int id);
 
     List<StudentPayment> getUnfinishedExpense(int id);
 
-    List<StudentRefund> getRefend(int id);
-
     List<StudentRefund> getUnfinishedRefund(int id);
 
+    boolean consume(String[] array);
+
     boolean charge(int id, Double amount);
+
 }

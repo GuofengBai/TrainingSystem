@@ -1,6 +1,7 @@
 package cn.edu.nju.TrainingSystem.DAO;
 
 import cn.edu.nju.TrainingSystem.entity.*;
+import cn.edu.nju.TrainingSystem.vo.StudentGradesVO;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +40,11 @@ public class InstitutionDAOImpl implements InstitutionDAO {
 
     public Institution get(int id) {
         return (Institution) sessionFactory.getCurrentSession().get(Institution.class, id);
+    }
+
+    public List<Institution> getList() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Institution.class);
+        return criteria.list();
     }
 
     public boolean edit(Institution institution) {
@@ -111,7 +118,7 @@ public class InstitutionDAOImpl implements InstitutionDAO {
         return query.list();
     }
 
-    public boolean oploadGrades(int courseId, int studentId, Double grades) {
+    public boolean uploadGrades(int courseId, int studentId, Double grades) {
         StudentCoursePK pk = new StudentCoursePK();
         pk.setCourseId(courseId);
         pk.setStudentId(studentId);
@@ -119,5 +126,20 @@ public class InstitutionDAOImpl implements InstitutionDAO {
         enrollRecord.setGrades(grades);
         sessionFactory.getCurrentSession().saveOrUpdate(enrollRecord);
         return true;
+    }
+
+    public List<StudentGradesVO> getStudentGrades(int institutionId) {
+        String hql = "select s.name, s.id, c.name, c.id, e.grades from EnrollRecord e, Course c, Student s " +
+                "where e.droped=0 and e.courseId=c.id and e.studentId=s.id and c.institutionId=?1";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter(1, institutionId);
+        List<Object[]> list = query.list();
+        List<StudentGradesVO> result = new ArrayList<StudentGradesVO>();
+        StudentGradesVO vo;
+        for (Object[] objects : list) {
+            vo = new StudentGradesVO((String) objects[0], (Integer) objects[1], (String) objects[2], (Integer) objects[3], (Double) objects[4]);
+            result.add(vo);
+        }
+        return result;
     }
 }
