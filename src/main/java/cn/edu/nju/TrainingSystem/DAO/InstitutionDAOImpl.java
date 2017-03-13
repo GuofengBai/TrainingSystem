@@ -65,11 +65,11 @@ public class InstitutionDAOImpl implements InstitutionDAO {
         projectionList.add(Projections.rowCount());
         projectionList.add(Projections.max("id"));
         criteria.setProjection(projectionList);
-        Integer[] result = (Integer[]) criteria.uniqueResult();
-        if (result[0] == 0) {
+        Object[] result = (Object[]) criteria.uniqueResult();
+        if (Integer.parseInt(result[0] == null ? "" : result[0].toString()) == 0) {
             institution.setId(1);
         } else {
-            institution.setId(result[1] + 1);
+            institution.setId(Integer.parseInt(result[1] == null ? "" : result[1].toString()) + 1);
         }
         sessionFactory.getCurrentSession().save(institution);
         return institution.getId();
@@ -137,7 +137,8 @@ public class InstitutionDAOImpl implements InstitutionDAO {
         List<StudentGradesVO> result = new ArrayList<StudentGradesVO>();
         StudentGradesVO vo;
         for (Object[] objects : list) {
-            vo = new StudentGradesVO((String) objects[0], (Integer) objects[1], (String) objects[2], (Integer) objects[3], (Double) objects[4]);
+            vo = new StudentGradesVO((String) objects[0], Integer.parseInt(objects[1] == null ? "" : objects[1].toString()),
+                    (String) objects[2], Integer.parseInt(objects[3] == null ? "" : objects[3].toString()), (Double) objects[4]);
             result.add(vo);
         }
         return result;

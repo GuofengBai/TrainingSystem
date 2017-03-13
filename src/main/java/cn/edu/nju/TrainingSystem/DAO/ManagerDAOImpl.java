@@ -151,7 +151,8 @@ public class ManagerDAOImpl implements ManagerDAO {
         List<StudentCountVO> result = new ArrayList<StudentCountVO>();
         StudentCountVO vo;
         for (Object[] objects : list) {
-            vo = new StudentCountVO((String) objects[0], (Integer) objects[1], (Integer) objects[2]);
+            vo = new StudentCountVO((String) objects[0], Integer.parseInt(objects[1] == null ? "" : objects[1].toString()),
+                    Integer.parseInt(objects[2] == null ? "" : objects[2].toString()));
             result.add(vo);
         }
         return result;
@@ -165,7 +166,8 @@ public class ManagerDAOImpl implements ManagerDAO {
         List<StudentGradesVO> result = new ArrayList<StudentGradesVO>();
         StudentGradesVO vo;
         for (Object[] objects : list) {
-            vo = new StudentGradesVO((String) objects[0], (Integer) objects[1], (String) objects[2], (Integer) objects[3], (Double) objects[4]);
+            vo = new StudentGradesVO((String) objects[0], Integer.parseInt(objects[1] == null ? "" : objects[1].toString()),
+                    (String) objects[2], Integer.parseInt(objects[3] == null ? "" : objects[3].toString()), (Double) objects[4]);
             result.add(vo);
         }
         return result;

@@ -1,6 +1,7 @@
 package cn.edu.nju.TrainingSystem.controller;
 
 import cn.edu.nju.TrainingSystem.entity.User;
+import cn.edu.nju.TrainingSystem.service.StudentService;
 import cn.edu.nju.TrainingSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class MainController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private StudentService studentService;
 
     @RequestMapping("")
     public String home() {

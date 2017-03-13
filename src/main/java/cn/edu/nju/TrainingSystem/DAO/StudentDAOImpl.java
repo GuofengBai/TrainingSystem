@@ -60,12 +60,13 @@ public class StudentDAOImpl implements StudentDAO {
         projectionList.add(Projections.rowCount());
         projectionList.add(Projections.max("id"));
         criteria.setProjection(projectionList);
-        Integer[] result = (Integer[]) criteria.uniqueResult();
-        if (result[0] == 0) {
+        Object[] result = (Object[]) criteria.uniqueResult();
+        if (Integer.parseInt(result[0] == null ? "" : result[0].toString()) == 0) {
             student.setId(1);
         } else {
-            student.setId(result[1] + 1);
+            student.setId(Integer.parseInt(result[1] == null ? "" : result[1].toString()) + 1);
         }
+        student.setBalance(1000.0);
         student.setLastChargeDate(new Date(System.currentTimeMillis()));
         student.setLevel(0);
         student.setPoint(0.0);
