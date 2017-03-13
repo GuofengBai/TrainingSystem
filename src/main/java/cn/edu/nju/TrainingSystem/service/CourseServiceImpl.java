@@ -2,6 +2,7 @@ package cn.edu.nju.TrainingSystem.service;
 
 import cn.edu.nju.TrainingSystem.DAO.CourseDAO;
 import cn.edu.nju.TrainingSystem.entity.*;
+import cn.edu.nju.TrainingSystem.vo.StudentGradesVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,10 @@ public class CourseServiceImpl implements CourseService {
 
     public List<Course> getUnselectedList(int studentId) {
         return courseDAO.getUnselectedList(studentId);
+    }
+
+    public Course find(int id) {
+        return courseDAO.find(id);
     }
 
     public boolean selectCourse(String[] array, int studentId) {
@@ -57,5 +62,9 @@ public class CourseServiceImpl implements CourseService {
 
     public boolean editRequest(EditCourseRequest editCourseRequest) {
         return courseDAO.editRequest(editCourseRequest);
+    }
+
+    public List<StudentGradesVO> getStudentGrades(int courseId) {
+        return courseDAO.getStudentGrades(courseId);
     }
 }

@@ -1,6 +1,7 @@
 package cn.edu.nju.TrainingSystem.DAO;
 
 import cn.edu.nju.TrainingSystem.entity.*;
+import cn.edu.nju.TrainingSystem.vo.StudentGradesVO;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface CourseDAO {
 
     List<Course> getUnselectedList(int studentId);
 
+    Course find(int id);
+
     boolean selectCourse(List<EnrollRecord> enrollRecordList);
 
     boolean dropCourse(List<DropRecord> dropRecordList);
@@ -20,5 +23,7 @@ public interface CourseDAO {
     boolean addRequest(AddCourseRequest addCourseRequest);
 
     boolean editRequest(EditCourseRequest editCourseRequest);
+
+    List<StudentGradesVO> getStudentGrades(int courseId);
 
 }

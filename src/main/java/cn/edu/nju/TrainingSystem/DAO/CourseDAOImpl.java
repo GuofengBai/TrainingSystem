@@ -1,6 +1,7 @@
 package cn.edu.nju.TrainingSystem.DAO;
 
 import cn.edu.nju.TrainingSystem.entity.*;
+import cn.edu.nju.TrainingSystem.vo.StudentGradesVO;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +31,10 @@ public class CourseDAOImpl implements CourseDAO {
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("sid", studentId);
         return query.list();
+    }
+
+    public Course find(int id) {
+        return (Course) sessionFactory.getCurrentSession().get(Course.class, id);
     }
 
     public boolean selectCourse(List<EnrollRecord> enrollRecordList) {
@@ -87,5 +93,21 @@ public class CourseDAOImpl implements CourseDAO {
         editCourseRequest.setState("未完成");
         sessionFactory.getCurrentSession().saveOrUpdate(editCourseRequest);
         return true;
+    }
+
+    public List<StudentGradesVO> getStudentGrades(int courseId) {
+        String hql = "select s.name, s.id, c.name, c.id, e.grades from EnrollRecord e, Course c, Student s " +
+                "where c.id=:cid and e.courseId=c.id and e.droped=0 and e.studentId=s.id";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("cid", courseId);
+        List<Object[]> list = query.list();
+        List<StudentGradesVO> result = new ArrayList<StudentGradesVO>();
+        StudentGradesVO vo;
+        for (Object[] objects : list) {
+            vo = new StudentGradesVO((String) objects[0], Integer.parseInt(objects[1] == null ? "" : objects[1].toString()),
+                    (String) objects[2], Integer.parseInt(objects[3] == null ? "" : objects[3].toString()), (Double) objects[4]);
+            result.add(vo);
+        }
+        return result;
     }
 }

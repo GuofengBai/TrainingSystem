@@ -44,7 +44,12 @@ public class MainController {
                 return "warning";
             }
         } else {
-            return "institution";
+            if (institutionService.login(id, password)) {
+                request.getSession().setAttribute("institutionId", Integer.parseInt(id));
+                return "redirect:/institution/home";
+            } else {
+                return "warning";
+            }
         }
     }
 

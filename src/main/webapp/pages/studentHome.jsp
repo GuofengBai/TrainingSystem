@@ -27,6 +27,10 @@
 <div>
     <table border="2">
         <tr>
+            <td>学生id</td>
+            <td>${student.id}</td>
+        </tr>
+        <tr>
             <td>姓名</td>
             <td>${student.name}</td>
         </tr>
