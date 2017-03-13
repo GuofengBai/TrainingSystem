@@ -11,6 +11,8 @@ public interface CourseDAO {
 
     List<Course> getList();
 
+    List<Course> getUnselectedList(int studentId);
+
     boolean selectCourse(List<EnrollRecord> enrollRecordList);
 
     boolean dropCourse(List<DropRecord> dropRecordList);

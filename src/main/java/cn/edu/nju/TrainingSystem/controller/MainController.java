@@ -1,15 +1,13 @@
 package cn.edu.nju.TrainingSystem.controller;
 
-import cn.edu.nju.TrainingSystem.entity.User;
+import cn.edu.nju.TrainingSystem.service.InstitutionService;
 import cn.edu.nju.TrainingSystem.service.StudentService;
-import cn.edu.nju.TrainingSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by baiguofeng on 2017/3/8.
@@ -19,28 +17,35 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private UserService userService;
+    private InstitutionService institutionService;
 
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("")
-    public String home() {
-        List<User> us = new ArrayList<User>();
-        User u = new User();
-        u.setName("axy14");
-        us.add(u);
-        u = new User();
-        u.setName("cjh14");
-        us.add(u);
-        userService.saveUsers(us);
+    @RequestMapping("/")
+    public String indexPage() {
         return "index";
     }
 
-    @RequestMapping("/json")
-    @ResponseBody
-    public List<User> json() {
-        return userService.getAllUsernames();
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(String id, String password, String type, HttpServletRequest request) {
+        if (type.equals("manager")) {
+            return "manager";
+        } else if (type.equals("student")) {
+            if (studentService.login(id, password)) {
+                request.getSession().setAttribute("studentId", Integer.parseInt(id));
+                return "redirect:/student/home";
+            } else {
+                return "warning";
+            }
+        } else {
+            return "institution";
+        }
     }
 
 }

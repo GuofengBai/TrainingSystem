@@ -13,6 +13,8 @@ public interface CourseService {
 
     List<Course> getList();
 
+    List<Course> getUnselectedList(int studentId);
+
     boolean selectCourse(String[] array, int studentId);
 
     boolean dropCourse(String[] array, int studentId);

@@ -19,6 +19,10 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentDAO studentDAO;
 
+    public boolean login(String id, String password) {
+        return studentDAO.login(id, password);
+    }
+
     public boolean login(int id, String password) {
         return studentDAO.login(id, password);
     }

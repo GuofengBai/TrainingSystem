@@ -76,50 +76,50 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     public List<Course> getEnrolled(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c,EnrollRecord e where e.studentId=?1 and e.courseId=c.id and e.droped=0");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c,EnrollRecord e where e.studentId=:sid and e.courseId=c.id and e.droped=0");
+        query.setParameter("sid", id);
         return query.list();
     }
 
     public List<Course> getDroped(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c,DropRecord d where d.studentId=?1 and d.courseId=c.id");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("select c from Course c,DropRecord d where d.studentId=:sid and d.courseId=c.id");
+        query.setParameter("sid", id);
         return query.list();
     }
 
     public List<EnrollRecord> getEnrollRecord(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from EnrollRecord where studentId=?1 and droped=0");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("from EnrollRecord where studentId=:sid and droped=0");
+        query.setParameter("sid", id);
         return query.list();
     }
 
     public List<DropRecord> getDropRecord(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from DropRecord where studentId=?1");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("from DropRecord where studentId=:sid");
+        query.setParameter("sid", id);
         return query.list();
     }
 
     public List<StudentPayment> getExpense(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from StudentPayment where studentId=?1 and (state='完成' or state='交付')");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("from StudentPayment where studentId=:sid and (state='完成' or state='交付')");
+        query.setParameter("sid", id);
         return query.list();
     }
 
     public List<StudentRefund> getRefend(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from StudentRefund where studentId=?1 and state='交付'");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("from StudentRefund where studentId=:sid and state='交付'");
+        query.setParameter("sid", id);
         return query.list();
     }
 
     public List<StudentPayment> getUnfinishedExpense(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from StudentPayment where studentId=?1 and state='未完成'");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("from StudentPayment where studentId=:sid and state='未完成'");
+        query.setParameter("sid", id);
         return query.list();
     }
 
     public List<StudentRefund> getUnfinishedRefund(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from StudentRefund where studentId=?1 and state='未完成'");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("from StudentRefund where studentId=:sid and state='未完成'");
+        query.setParameter("sid", id);
         return query.list();
     }
 

@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface StudentService {
 
+    boolean login(String id, String password);
+
     boolean login(int id, String password);
 
     Student find(int id);

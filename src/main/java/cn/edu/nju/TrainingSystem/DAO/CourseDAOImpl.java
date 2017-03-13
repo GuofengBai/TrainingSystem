@@ -2,6 +2,7 @@ package cn.edu.nju.TrainingSystem.DAO;
 
 import cn.edu.nju.TrainingSystem.entity.*;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,13 @@ public class CourseDAOImpl implements CourseDAO {
     public List<Course> getList() {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Course.class);
         return criteria.list();
+    }
+
+    public List<Course> getUnselectedList(int studentId) {
+        String hql = "select c from Course c where c.id not in (select e.courseId from EnrollRecord e where e.studentId=:sid and e.droped=0)";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("sid", studentId);
+        return query.list();
     }
 
     public boolean selectCourse(List<EnrollRecord> enrollRecordList) {

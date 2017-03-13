@@ -14,6 +14,7 @@ public class Institution {
     private String password;
     private String name;
     private Double balance;
+    private String bankcard;
 
     @Id
     public int getId() {
@@ -46,5 +47,13 @@ public class Institution {
 
     public void setBalance(Double balance) {
         this.balance = balance;
+    }
+
+    public String getBankcard() {
+        return bankcard;
+    }
+
+    public void setBankcard(String bankcard) {
+        this.bankcard = bankcard;
     }
 }

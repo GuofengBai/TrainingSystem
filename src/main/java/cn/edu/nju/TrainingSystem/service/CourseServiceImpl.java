@@ -23,6 +23,10 @@ public class CourseServiceImpl implements CourseService {
         return courseDAO.getList();
     }
 
+    public List<Course> getUnselectedList(int studentId) {
+        return courseDAO.getUnselectedList(studentId);
+    }
+
     public boolean selectCourse(String[] array, int studentId) {
         List<EnrollRecord> enrollRecordList = new ArrayList<EnrollRecord>();
         EnrollRecord toGenerate;

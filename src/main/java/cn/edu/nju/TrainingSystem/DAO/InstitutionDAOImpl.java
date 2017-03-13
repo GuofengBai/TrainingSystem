@@ -71,50 +71,51 @@ public class InstitutionDAOImpl implements InstitutionDAO {
         } else {
             institution.setId(Integer.parseInt(result[1] == null ? "" : result[1].toString()) + 1);
         }
+        institution.setBalance(0.0);
         sessionFactory.getCurrentSession().save(institution);
         return institution.getId();
     }
 
     public List<Course> getAllCourse(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Course where institutionId=?1");
-        query.setParameter(1, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("from Course where institutionId=:iid");
+        query.setParameter("iid", id);
         return query.list();
     }
 
     public List<Course> getUnselectedCourse(int id, int sid) {
-        String hql = "select c from Course c where c.institutionId=?1 and " +
-                "c.id not in (select e.courseId from EnrollRecord e where e.studentId=?2 and e.droped=0)";
+        String hql = "select c from Course c where c.institutionId=:iid and " +
+                "c.id not in (select e.courseId from EnrollRecord e where e.studentId=:sid and e.droped=0)";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter(1, id);
-        query.setParameter(2, sid);
+        query.setParameter("iid", id);
+        query.setParameter("sid", sid);
         return query.list();
     }
 
     public List<EnrollRecord> getEnrolled(int id) {
-        String hql = "select e from EnrollRecord e,Course c where c.institutionId=?1 and e.courseId=c.id and e.droped=0";
+        String hql = "select e from EnrollRecord e,Course c where c.institutionId=:iid and e.courseId=c.id and e.droped=0";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter(1, id);
+        query.setParameter("iid", id);
         return query.list();
     }
 
     public List<DropRecord> getDroped(int id) {
-        String hql = "select d from DropRecord d,Course c where c.institutionId=?1 and d.courseId=c.id";
+        String hql = "select d from DropRecord d,Course c where c.institutionId=:iid and d.courseId=c.id";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter(1, id);
+        query.setParameter("iid", id);
         return query.list();
     }
 
     public List<InstitutionPayment> getPayment(int id) {
-        String hql = "from InstitutionPayment where institutionId=?1";
+        String hql = "from InstitutionPayment where institutionId=:iid";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter(1, id);
+        query.setParameter("iid", id);
         return query.list();
     }
 
     public List<InstitutionRefund> getRefund(int id) {
-        String hql = "from InstitutionRefund where institutionId=?1";
+        String hql = "from InstitutionRefund where institutionId=:iid";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter(1, id);
+        query.setParameter("iid", id);
         return query.list();
     }
 
@@ -130,9 +131,9 @@ public class InstitutionDAOImpl implements InstitutionDAO {
 
     public List<StudentGradesVO> getStudentGrades(int institutionId) {
         String hql = "select s.name, s.id, c.name, c.id, e.grades from EnrollRecord e, Course c, Student s " +
-                "where e.droped=0 and e.courseId=c.id and e.studentId=s.id and c.institutionId=?1";
+                "where e.droped=0 and e.courseId=c.id and e.studentId=s.id and c.institutionId=:iid";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter(1, institutionId);
+        query.setParameter("iid", institutionId);
         List<Object[]> list = query.list();
         List<StudentGradesVO> result = new ArrayList<StudentGradesVO>();
         StudentGradesVO vo;
