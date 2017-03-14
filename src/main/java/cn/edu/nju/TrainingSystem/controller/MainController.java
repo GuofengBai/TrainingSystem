@@ -35,7 +35,10 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(String id, String password, String type, HttpServletRequest request) {
         if (type.equals("manager")) {
-            return "manager";
+            if (id.equals("manager") && password.equals("admin")) {
+                return "redirect:/manager/analysis";
+            }
+            return "warning";
         } else if (type.equals("student")) {
             if (studentService.login(id, password)) {
                 request.getSession().setAttribute("studentId", Integer.parseInt(id));

@@ -11,7 +11,7 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -24,14 +24,14 @@
     </nav>
 </div>
 <table border="2">
-    <th>
+    <tr>
     <td>课程id</td>
     <td>课程名称</td>
     <td>老师</td>
     <td>开讲时间</td>
     <td>结束时间</td>
     <td>价格</td>
-    </th>
+    </tr>
     <c:forEach items="${course}" var="item">
         <tr>
             <td><a href="<%=request.getContextPath()%>/institution/course/${item.id}">${item.id}</a></td>

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,20 +75,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     public boolean consume(String[] array) {
-        List<StudentPayment> paymentList = new ArrayList<StudentPayment>();
-        StudentPayment toConsume;
-        for (String item : array) {
-            String[] str = item.split(":");
-            toConsume = new StudentPayment();
-            toConsume.setId(Integer.parseInt(str[0]));
-            toConsume.setStudentId(Integer.parseInt(str[1]));
-            toConsume.setCourseId(Integer.parseInt(str[2]));
-            toConsume.setInstitutionId(Integer.parseInt(str[3]));
-            toConsume.setAmount(Double.parseDouble(str[4]));
-            toConsume.setState(str[5]);
-            paymentList.add(toConsume);
-        }
-        return studentDAO.consume(paymentList);
+        return studentDAO.consume(array);
     }
 
     public boolean charge(int id, Double amount) {

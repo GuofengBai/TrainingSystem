@@ -11,7 +11,7 @@
 <head>
     <title>${course.name}</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -29,11 +29,11 @@
         <table border="2">
             <tr>
                 <td>机构id</td>
-                <td><input type="text" name="institutionId" value="${course.institutionId}" disabled="true"></td>
+                <td><input type="text" name="institutionId" value="${course.institutionId}" readonly="readonly"></td>
             </tr>
             <tr>
                 <td>课程id</td>
-                <td><input type="text" name="courseId" value="${course.id}" disabled="true"></td>
+                <td><input type="text" name="courseId" value="${course.id}" readonly="readonly"></td>
             </tr>
             <tr>
                 <td>课程名称</td>
@@ -78,11 +78,11 @@
 </div>
 <h1>成绩记录</h1>
 <table border="2">
-    <th>
+    <tr>
     <td>学生id</td>
     <td>学生姓名</td>
     <td>成绩</td>
-    </th>
+    </tr>
     <c:forEach items="${grades}" var="item">
         <tr>
             <td>${item.studentId}</td>

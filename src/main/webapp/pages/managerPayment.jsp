@@ -1,55 +1,51 @@
 <%--
   Created by IntelliJ IDEA.
   User: baiguofeng
-  Date: 2017/3/13
-  Time: 22:14
+  Date: 2017/3/14
+  Time: 17:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>选课</title>
+    <title>付款结算</title>
 </head>
 <body style="text-align: center">
 <div>
     <nav>
         <ul>
-            <li><a href="<%=request.getContextPath()%>/student/home">基本信息</a></li>
-            <li><a href="#">选课</a></li>
-            <li><a href="<%=request.getContextPath()%>/course/drop">退课</a></li>
-            <li><a href="<%=request.getContextPath()%>/student/consume">消费</a></li>
-            <li><a href="<%=request.getContextPath()%>/student/analysis">统计信息</a></li>
-            <li><a href="<%=request.getContextPath()%>/student/edit">修改信息</a></li>
-            <li><a href="<%=request.getContextPath()%>/student/charge">充值</a></li>
+            <li><a href="<%=request.getContextPath()%>/manager/analysis">统计信息</a></li>
+            <li><a href="<%=request.getContextPath()%>/manager/finance">财务状况</a></li>
+            <li><a href="<%=request.getContextPath()%>/manager/add">开课申请</a></li>
+            <li><a href=<%=request.getContextPath()%>/manager/edit">改课申请</a></li>
+            <li><a href="#">付款结算</a></li>
+            <li><a href="<%=request.getContextPath()%>/manager/refund">退款审核</a></li>
         </ul>
     </nav>
 </div>
+<h1>学生付款单列表</h1>
 <table border="2">
     <tr>
-    <td>课程id</td>
-    <td>课程名称</td>
-    <td>机构id</td>
-    <td>老师</td>
-    <td>开讲时间</td>
-    <td>结束时间</td>
-    <td>价格</td>
-    <td>选择</td>
+        <td>付款单id</td>
+        <td>学生id</td>
+        <td>课程id</td>
+        <td>机构id</td>
+        <td>金额</td>
+        <td>选择</td>
     </tr>
-    <c:forEach items="${toSelect}" var="item">
+    <c:forEach items="${payment}" var="item">
         <tr>
             <td>${item.id}</td>
-            <td>${item.name}</td>
+            <td>${item.studentId}</td>
+            <td>${item.courseId}</td>
             <td>${item.institutionId}</td>
-            <td>${item.teacher}</td>
-            <td>${item.startTime}</td>
-            <td>${item.endTime}</td>
-            <td>${item.price}</td>
+            <td>${item.amount}</td>
             <td><input type="checkbox" name="chk" value="${item.id}"/></td>
         </tr>
     </c:forEach>
 </table>
-<button id="actionBtn">选课</button>
+<button id="actionBtn">结算</button>
 <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -62,7 +58,7 @@
             );
             list = list.substr(1);
 
-            $.ajax("<%=request.getContextPath()%>/course/select", {
+            $.ajax("<%=request.getContextPath()%>/manager/payment", {
                 type: 'POST',
                 data: {array: list},
                 success: function (result) {

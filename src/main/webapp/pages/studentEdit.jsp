@@ -10,7 +10,7 @@
 <head>
     <title>信息编辑</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -37,15 +37,15 @@
             </tr>
             <tr>
                 <td>余额</td>
-                <td><input type="text" disabled="true" value="${student.balance}"></td>
+                <td><input type="text" readonly="readonly" value="${student.balance}"></td>
             </tr>
             <tr>
                 <td>等级</td>
-                <td><input type="text" disabled="true" value="${student.level}"></td>
+                <td><input type="text" readonly="readonly" value="${student.level}"></td>
             </tr>
             <tr>
                 <td>点数</td>
-                <td><input type="text" disabled="true" value="${student.point}"></td>
+                <td><input type="text" readonly="readonly" value="${student.point}"></td>
             </tr>
         </table>
         <input type="submit" value="更改">

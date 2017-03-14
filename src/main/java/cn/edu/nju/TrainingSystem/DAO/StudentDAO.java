@@ -31,7 +31,7 @@ public interface StudentDAO {
 
     List<StudentPayment> getExpense(int id);
 
-    boolean consume(List<StudentPayment> paymentList);
+    boolean consume(String[] array);
 
     List<StudentPayment> getUnfinishedExpense(int id);
 

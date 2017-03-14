@@ -11,7 +11,7 @@
 <head>
     <title>消费</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -26,26 +26,25 @@
     </nav>
 </div>
 <table border="2">
-    <th>
+    <tr>
     <td>消费记录id</td>
     <td>课程id</td>
     <td>机构id</td>
     <td>金额</td>
     <td>选择</td>
-    </th>
+    </tr>
     <c:forEach items="${toConsume}" var="item">
         <tr>
             <td>${item.id}</td>
             <td>${item.courseId}</td>
             <td>${item.institutionId}</td>
             <td>${item.amount}</td>
-            <td><input type="checkbox" name="chk" value="${item.id}+':'+${item.studentId}+':'+
-            ${item.courseId}+':'+${item.institutionId}+':'+${item.amount}+':'+${item.state}"/></td>
+            <td><input type="checkbox" name="chk" value="${item.id}"/></td>
         </tr>
     </c:forEach>
 </table>
 <button id="actionBtn">支付</button>
-<script src="../static/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#actionBtn').bind("click", function () {
@@ -57,15 +56,15 @@
             );
             list = list.substr(1);
 
-            $.ajax("/student/consume", {
+            $.ajax("<%=request.getContextPath()%>/student/consume", {
                 type: 'POST',
                 data: {array: list},
                 success: function (result) {
-                    alert(result.msg);
+                    alert(result.msg.toString());
                     location.reload(true);
                 },
                 error: function (result) {
-                    alert(result.msg);
+                    alert(result.msg.toString());
                     location.reload(true);
                 }
             });

@@ -11,7 +11,7 @@
 <head>
     <title>统计信息</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -25,10 +25,10 @@
 </div>
 <h1>你的机构有如下选课记录</h1>
 <table border="2">
-    <th>
+    <tr>
     <td>课程id</td>
     <td>学生id</td>
-    </th>
+    </tr>
     <c:forEach items="${enrolled}" var="eitem">
         <tr>
             <td>${eitem.courseId}</td>
@@ -38,10 +38,10 @@
 </table>
 <h1>你的机构有如下退课记录</h1>
 <table border="2">
-    <th>
+    <tr>
     <td>课程id</td>
     <td>学生id</td>
-    </th>
+    </tr>
     <c:forEach items="${droped}" var="ditem">
         <tr>
             <td>${ditem.courseId}</td>

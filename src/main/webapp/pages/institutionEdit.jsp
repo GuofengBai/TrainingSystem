@@ -10,7 +10,7 @@
 <head>
     <title>修改信息</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -27,7 +27,7 @@
         <table border="2">
             <tr>
                 <td>机构id</td>
-                <td><input type="text" value="${institution.id}" disabled="true"></td>
+                <td><input type="text" value="${institution.id}" readonly="readonly"></td>
             </tr>
             <tr>
                 <td>机构名称</td>
@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <td>余额</td>
-                <td><input type="text" value="${institution.balance}" disabled="true"></td>
+                <td><input type="text" value="${institution.balance}" readonly="readonly"></td>
             </tr>
         </table>
         <input type="submit" value="更改">

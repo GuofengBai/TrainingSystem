@@ -10,7 +10,7 @@
 <head>
     <title>充值</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>

@@ -123,23 +123,28 @@ public class StudentDAOImpl implements StudentDAO {
         return query.list();
     }
 
-    public boolean consume(List<StudentPayment> paymentList) {
-        Session session = sessionFactory.getCurrentSession();
+
+    public boolean consume(String[] array) {
+        int id;
+        StudentPayment studentPayment;
         Student student;
         EnrollRecord enrollRecord;
         StudentCoursePK pk = new StudentCoursePK();
-        for (StudentPayment studentPayment : paymentList) {
+        Session session = sessionFactory.getCurrentSession();
+        for (String item : array) {
+            id = Integer.parseInt(item);
+            studentPayment = (StudentPayment) session.get(StudentPayment.class, id);
+            pk.setStudentId(studentPayment.getStudentId());
+            pk.setCourseId(studentPayment.getCourseId());
+            enrollRecord = (EnrollRecord) session.get(EnrollRecord.class, pk);
+            student = (Student) session.get(Student.class, studentPayment.getStudentId());
             if (studentPayment.getState().equals("未完成")) {
                 studentPayment.setState("完成");
-                student = (Student) session.get(Student.class, studentPayment.getStudentId());
                 student.outcome(studentPayment.getAmount());
-                pk.setStudentId(student.getId());
-                pk.setCourseId(studentPayment.getCourseId());
-                enrollRecord = (EnrollRecord) session.get(EnrollRecord.class, pk);
                 enrollRecord.setDroped((byte) 0);
                 session.saveOrUpdate(studentPayment);
-                session.saveOrUpdate(student);
                 session.saveOrUpdate(enrollRecord);
+                session.saveOrUpdate(student);
             }
         }
         return true;

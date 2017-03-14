@@ -11,7 +11,7 @@
 <head>
     <title>退课</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -26,7 +26,7 @@
     </nav>
 </div>
 <table border="2">
-    <th>
+    <tr>
     <td>课程id</td>
     <td>课程名称</td>
     <td>机构id</td>
@@ -35,7 +35,7 @@
     <td>结束时间</td>
     <td>价格</td>
     <td>选择</td>
-    </th>
+    </tr>
     <c:forEach items="${toDrop}" var="item">
         <tr>
             <td>${item.id}</td>
@@ -50,7 +50,7 @@
     </c:forEach>
 </table>
 <button id="actionBtn">退课</button>
-<script src="../static/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#actionBtn').bind("click", function () {
@@ -62,15 +62,15 @@
             );
             list = list.substr(1);
 
-            $.ajax("/course/drop", {
+            $.ajax("<%=request.getContextPath()%>/course/drop", {
                 type: 'POST',
                 data: {array: list},
                 success: function (result) {
-                    alert(result.msg);
+                    alert(result.msg.toString());
                     location.reload(true);
                 },
                 error: function (result) {
-                    alert(result.msg);
+                    alert(result.msg.toString());
                     location.reload(true);
                 }
             });

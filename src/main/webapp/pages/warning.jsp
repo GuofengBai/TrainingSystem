@@ -10,7 +10,7 @@
 <head>
     <title>登录错误</title>
 </head>
-<body>
+<body style="text-align: center">
 <h1>登陆错误，请检查id与密码的正确性！</h1>
 <a href="<%=request.getContextPath()%>/login">重新登录</a>
 </body>

@@ -10,7 +10,7 @@
 <head>
     <title>机构首页</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td>银行卡号</td>
-            <td>${institution.bankCard}</td>
+            <td>${institution.bankcard}</td>
         </tr>
         <tr>
             <td>余额</td>

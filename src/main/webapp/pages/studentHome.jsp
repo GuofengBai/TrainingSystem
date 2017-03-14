@@ -10,7 +10,7 @@
 <head>
     <title>学生首页</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>

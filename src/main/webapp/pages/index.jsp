@@ -3,7 +3,7 @@
 <head>
     <title>培训机构系统</title>
 </head>
-<body>
+<body style="text-align: center">
 <h2>欢迎使用培训机构系统</h2>
 <a href="<%=request.getContextPath()%>/login">登录</a>
 <a href="<%=request.getContextPath()%>/student/register">学生注册</a>

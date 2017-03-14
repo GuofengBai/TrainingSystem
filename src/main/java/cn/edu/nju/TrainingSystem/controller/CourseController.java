@@ -68,7 +68,7 @@ public class CourseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addPage(Model model, HttpServletRequest request) {
-        int id = Integer.parseInt(request.getSession().getAttribute("studentId").toString());
+        int id = Integer.parseInt(request.getSession().getAttribute("institutionId").toString());
         model.addAttribute("institutionId", id);
         return "addCourse";
     }
@@ -77,6 +77,7 @@ public class CourseController {
     public void add(String institutionId, String name, String teacher, Date startDate,
                     Date endDate, String price, HttpServletResponse response) {
         AddCourseRequest addCourseRequest = new AddCourseRequest();
+        System.out.println(institutionId);
         addCourseRequest.setInstitutionId(Integer.parseInt(institutionId));
         addCourseRequest.setName(name);
         addCourseRequest.setTeacher(teacher);

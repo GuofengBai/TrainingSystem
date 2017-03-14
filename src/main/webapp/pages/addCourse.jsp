@@ -10,7 +10,7 @@
 <head>
     <title>添加课程</title>
 </head>
-<body>
+<body style="text-align: center">
 <div>
     <nav>
         <ul>
@@ -27,7 +27,7 @@
         <table border="2">
             <tr>
                 <td>机构id</td>
-                <td><input type="text" name="institutionId" value="${institutionId}" disabled="true"></td>
+                <td><input type="text" name="institutionId" value="${institutionId}" readonly="readonly"></td>
             </tr>
             <tr>
                 <td>课程名称</td>
