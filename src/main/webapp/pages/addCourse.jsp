@@ -10,7 +10,7 @@
 <head>
     <title>添加课程</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>
@@ -19,6 +19,7 @@
             <li><a href="#">新增课程</a></li>
             <li><a href="<%=request.getContextPath()%>/institution/analysis">统计信息</a></li>
             <li><a href="<%=request.getContextPath()%>/institution/edit">修改信息</a></li>
+            <li><a href="<%=request.getContextPath()%>/institution/logout">登出</a></li>
         </ul>
     </nav>
 </div>

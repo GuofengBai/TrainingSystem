@@ -11,7 +11,7 @@
 <head>
     <title>改课申请</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>

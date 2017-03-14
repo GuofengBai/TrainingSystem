@@ -27,6 +27,12 @@ public class InstitutionController {
     @Autowired
     private CourseService courseService;
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("institutionId");
+        return "redirect:/login";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerPage() {
         return "institutionRegister";

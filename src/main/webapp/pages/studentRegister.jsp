@@ -11,7 +11,7 @@
 <head>
     <title>学生注册</title>
 </head>
-<body style="text-align: center">
+<body>
 
 <h1>学生注册</h1>
 <form action="<%=request.getContextPath()%>/student/register" method="POST">

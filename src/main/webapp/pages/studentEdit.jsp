@@ -10,7 +10,7 @@
 <head>
     <title>信息编辑</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>
@@ -21,6 +21,7 @@
             <li><a href="<%=request.getContextPath()%>/student/analysis">统计信息</a></li>
             <li><a href="#">修改信息</a></li>
             <li><a href="<%=request.getContextPath()%>/student/charge">充值</a></li>
+            <li><a href="<%=request.getContextPath()%>/student/logout">登出</a></li>
         </ul>
     </nav>
 </div>

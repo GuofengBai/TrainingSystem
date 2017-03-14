@@ -11,7 +11,7 @@
 <head>
     <title>统计信息</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>
@@ -22,6 +22,7 @@
             <li><a href="#">统计信息</a></li>
             <li><a href="<%=request.getContextPath()%>/student/edit">修改信息</a></li>
             <li><a href="<%=request.getContextPath()%>/student/charge">充值</a></li>
+            <li><a href="<%=request.getContextPath()%>/student/logout">登出</a></li>
         </ul>
     </nav>
 </div>

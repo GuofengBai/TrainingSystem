@@ -11,7 +11,7 @@
 <head>
     <title>机构注册</title>
 </head>
-<body style="text-align: center">
+<body>
 
 <h1>机构注册</h1>
 <form action="<%=request.getContextPath()%>/institution/register" method="POST">

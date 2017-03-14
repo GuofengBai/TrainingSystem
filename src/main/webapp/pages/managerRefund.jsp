@@ -11,7 +11,7 @@
 <head>
     <title>退款审核</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>

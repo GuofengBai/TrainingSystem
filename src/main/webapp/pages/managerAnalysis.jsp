@@ -11,7 +11,7 @@
 <head>
     <title>统计信息</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>

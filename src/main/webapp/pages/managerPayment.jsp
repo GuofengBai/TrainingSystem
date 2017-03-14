@@ -11,7 +11,7 @@
 <head>
     <title>付款结算</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>

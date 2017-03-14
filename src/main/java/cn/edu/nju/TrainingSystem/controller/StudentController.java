@@ -22,6 +22,12 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("studentId");
+        return "redirect:/login";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerPage() {
         return "studentRegister";

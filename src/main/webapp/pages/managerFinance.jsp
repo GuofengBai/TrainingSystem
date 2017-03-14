@@ -11,7 +11,7 @@
 <head>
     <title>财务状况</title>
 </head>
-<body style="text-align: center">
+<body>
 <div>
     <nav>
         <ul>
