@@ -51,12 +51,12 @@
 </table>
 <h1>你的机构有如下付款记录</h1>
 <table border="2">
-    <th>
+    <tr>
     <td>付款单id</td>
     <td>课程id</td>
     <td>学生id</td>
     <td>金额</td>
-    </th>
+    </tr>
     <c:forEach items="${payment}" var="pitem">
         <tr>
             <td>${pitem.id}</td>
@@ -68,12 +68,12 @@
 </table>
 <h1>你的机构有如下退款记录</h1>
 <table border="2">
-    <th>
+    <tr>
     <td>退款单id</td>
     <td>课程id</td>
     <td>学生id</td>
     <td>金额</td>
-    </th>
+    </tr>
     <c:forEach items="${refund}" var="ritem">
         <tr>
             <td>${ritem.id}</td>

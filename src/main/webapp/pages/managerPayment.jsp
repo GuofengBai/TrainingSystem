@@ -18,7 +18,7 @@
             <li><a href="<%=request.getContextPath()%>/manager/analysis">统计信息</a></li>
             <li><a href="<%=request.getContextPath()%>/manager/finance">财务状况</a></li>
             <li><a href="<%=request.getContextPath()%>/manager/add">开课申请</a></li>
-            <li><a href=<%=request.getContextPath()%>/manager/edit">改课申请</a></li>
+            <li><a href="<%=request.getContextPath()%>/manager/edit">改课申请</a></li>
             <li><a href="#">付款结算</a></li>
             <li><a href="<%=request.getContextPath()%>/manager/refund">退款审核</a></li>
         </ul>
@@ -61,12 +61,11 @@
             $.ajax("<%=request.getContextPath()%>/manager/payment", {
                 type: 'POST',
                 data: {array: list},
+                datatype: "text",
                 success: function (result) {
-                    alert(result.msg.toString());
                     location.reload(true);
                 },
                 error: function (result) {
-                    alert(result.msg.toString());
                     location.reload(true);
                 }
             });

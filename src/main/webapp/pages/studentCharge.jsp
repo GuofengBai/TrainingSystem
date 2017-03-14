@@ -24,7 +24,7 @@
         </ul>
     </nav>
 </div>
-<form action="<%=request.getContextPath()%>/student/charge" method="post">
+<div>
     <table border="2">
         <tr>
             <td>余额</td>
@@ -35,7 +35,7 @@
             <td>${student.level}</td>
         </tr>
         <tr>
-            <td>点数</td>
+            <td>积分</td>
             <td>${student.point}</td>
         </tr>
         <tr>
@@ -47,11 +47,28 @@
             <td>${student.lastChargeDate}</td>
         </tr>
         <tr>
+            <td>可兑换点数</td>
+            <td>${student.historyPoint}</td>
+        </tr>
+    </table>
+</div>
+<form action="<%=request.getContextPath()%>/student/charge" method="post">
+    <table>
+        <tr>
             <td>确定充值金额</td>
             <td><input type="text" name="amount"></td>
         </tr>
     </table>
-    <input type="submit">
+    <input type="submit" value="充值">
+</form>
+<form action="<%=request.getContextPath()%>/student/exchange" method="post">
+    <table>
+        <tr>
+            <td>要兑换的点数</td>
+            <td><input type="text" name="amount"></td>
+        </tr>
+    </table>
+    <input type="submit" value="充值">
 </form>
 </body>
 </html>

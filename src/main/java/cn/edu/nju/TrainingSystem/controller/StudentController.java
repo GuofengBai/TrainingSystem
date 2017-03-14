@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by baiguofeng on 2017/3/13.
@@ -80,6 +78,13 @@ public class StudentController {
         return "redirect:/student/charge";
     }
 
+    @RequestMapping(value = "/exchange", method = RequestMethod.POST)
+    public String exchange(String amount, HttpServletRequest request) {
+        int id = Integer.parseInt(request.getSession().getAttribute("studentId").toString());
+        studentService.exchange(id, Double.parseDouble(amount));
+        return "redirect:/student/charge";
+    }
+
     @RequestMapping("/analysis")
     public String analysisPage(Model model, HttpServletRequest request) {
         int id = Integer.parseInt(request.getSession().getAttribute("studentId").toString());
@@ -99,11 +104,9 @@ public class StudentController {
 
     @RequestMapping(value = "/consume", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> consume(String array) {
+    public String consume(String array) {
         String[] toConsume = array.split(",");
         studentService.consume(toConsume);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", "支付成功，您已可以开始上课！");
-        return map;
+        return "支付成功，您已可以开始上课！";
     }
 }

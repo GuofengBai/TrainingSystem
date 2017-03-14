@@ -70,6 +70,7 @@ public class StudentDAOImpl implements StudentDAO {
         student.setLastChargeDate(new Date(System.currentTimeMillis()));
         student.setLevel(0);
         student.setPoint(0.0);
+        student.setHistoryPoint(0.0);
         student.setState("激活");
         sessionFactory.getCurrentSession().save(student);
         return student.getId();
@@ -129,11 +130,12 @@ public class StudentDAOImpl implements StudentDAO {
         StudentPayment studentPayment;
         Student student;
         EnrollRecord enrollRecord;
-        StudentCoursePK pk = new StudentCoursePK();
+        StudentCoursePK pk;
         Session session = sessionFactory.getCurrentSession();
         for (String item : array) {
             id = Integer.parseInt(item);
             studentPayment = (StudentPayment) session.get(StudentPayment.class, id);
+            pk = new StudentCoursePK();
             pk.setStudentId(studentPayment.getStudentId());
             pk.setCourseId(studentPayment.getCourseId());
             enrollRecord = (EnrollRecord) session.get(EnrollRecord.class, pk);
@@ -153,6 +155,14 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean charge(int id, Double amount) {
         Student student = (Student) sessionFactory.getCurrentSession().get(Student.class, id);
         student.setBalance(student.getBalance() + amount);
+        student.setLastChargeDate(new Date(System.currentTimeMillis()));
+        sessionFactory.getCurrentSession().saveOrUpdate(student);
+        return true;
+    }
+
+    public boolean exchange(int id, Double amount) {
+        Student student = (Student) sessionFactory.getCurrentSession().get(Student.class, id);
+        student.exchange(amount);
         student.setLastChargeDate(new Date(System.currentTimeMillis()));
         sessionFactory.getCurrentSession().saveOrUpdate(student);
         return true;

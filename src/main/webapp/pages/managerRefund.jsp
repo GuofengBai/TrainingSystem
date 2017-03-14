@@ -61,12 +61,11 @@
             $.ajax("<%=request.getContextPath()%>/manager/refund", {
                 type: 'POST',
                 data: {array: list},
+                datatype: "text",
                 success: function (result) {
-                    alert(result.msg.toString());
                     location.reload(true);
                 },
                 error: function (result) {
-                    alert(result.msg.toString());
                     location.reload(true);
                 }
             });

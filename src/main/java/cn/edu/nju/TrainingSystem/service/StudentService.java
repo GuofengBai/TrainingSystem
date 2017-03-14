@@ -41,4 +41,6 @@ public interface StudentService {
 
     boolean charge(int id, Double amount);
 
+    boolean exchange(int id, Double amount);
+
 }

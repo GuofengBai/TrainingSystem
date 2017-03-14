@@ -81,4 +81,8 @@ public class StudentServiceImpl implements StudentService {
     public boolean charge(int id, Double amount) {
         return studentDAO.charge(id, amount);
     }
+
+    public boolean exchange(int id, Double amount) {
+        return studentDAO.exchange(id, amount);
+    }
 }

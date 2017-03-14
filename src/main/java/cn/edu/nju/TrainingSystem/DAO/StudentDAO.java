@@ -40,4 +40,6 @@ public interface StudentDAO {
     List<StudentRefund> getUnfinishedRefund(int id);
 
     boolean charge(int id, Double amount);
+
+    boolean exchange(int id, Double amount);
 }

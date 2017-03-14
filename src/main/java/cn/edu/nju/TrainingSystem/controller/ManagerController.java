@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by baiguofeng on 2017/3/13.
@@ -44,12 +42,11 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Map<String, Object> add(String array) {
+    @ResponseBody
+    public String add(String array) {
         String[] toAdd = array.split(",");
         managerService.approveAddRequest(toAdd);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", "批准开课，新的课程将被加入！");
-        return map;
+        return "批准开课，新的课程将被加入！";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -59,12 +56,11 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public Map<String, Object> edit(String array) {
+    @ResponseBody
+    public String edit(String array) {
         String[] toEdit = array.split(",");
         managerService.approveEditRequest(toEdit);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", "批准修改课程，课程信息将被修改！");
-        return map;
+        return "批准修改课程，课程信息将被修改！";
     }
 
     @RequestMapping(value = "/payment", method = RequestMethod.GET)
@@ -74,12 +70,11 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/payment", method = RequestMethod.POST)
-    public Map<String, Object> payment(String array) {
+    @ResponseBody
+    public String payment(String array) {
         String[] plist = array.split(",");
         managerService.approvePayment(plist);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", "结算成功，机构将马上收到相应钱款!");
-        return map;
+        return "结算成功，机构将马上收到相应钱款!";
     }
 
     @RequestMapping(value = "/refund", method = RequestMethod.GET)
@@ -89,11 +84,10 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/refund", method = RequestMethod.POST)
-    public Map<String, Object> refund(String array) {
+    @ResponseBody
+    public String refund(String array) {
         String[] rlist = array.split(",");
         managerService.approveRefund(rlist);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", "退款批准，机构将被扣除相应余额，打入学生余额！");
-        return map;
+        return "退款批准，机构将被扣除相应余额，打入学生余额！";
     }
 }

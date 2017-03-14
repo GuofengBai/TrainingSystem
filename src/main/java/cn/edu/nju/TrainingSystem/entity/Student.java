@@ -18,6 +18,7 @@ public class Student {
     private Double balance;
     private Integer level;
     private Double point;
+    private Double historyPoint;
     private Date lastChargeDate;
     private String state;
 
@@ -94,6 +95,14 @@ public class Student {
         this.state = state;
     }
 
+    public Double getHistoryPoint() {
+        return historyPoint;
+    }
+
+    public void setHistoryPoint(Double historyPoint) {
+        this.historyPoint = historyPoint;
+    }
+
     public double discount() {
         double discount = 1;
         if (level == 5) {
@@ -113,6 +122,7 @@ public class Student {
     public boolean income(double income) {
         balance += income;
         point -= income * 0.1;
+        historyPoint -= income * 0.1;
         if (point >= 1000) {
             level = 5;
         } else if (point >= 500) {
@@ -132,6 +142,7 @@ public class Student {
     public boolean outcome(double outcome) {
         balance -= outcome;
         point += outcome * 0.15;
+        historyPoint += outcome * 0.15;
         if (point >= 1000) {
             level = 5;
         } else if (point >= 500) {
@@ -145,6 +156,12 @@ public class Student {
         } else {
             level = 0;
         }
+        return true;
+    }
+
+    public boolean exchange(double amount) {
+        balance += amount * 0.1;
+        historyPoint -= amount;
         return true;
     }
 

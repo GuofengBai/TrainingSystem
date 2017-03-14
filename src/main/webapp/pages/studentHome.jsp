@@ -47,7 +47,7 @@
             <td>${student.level}</td>
         </tr>
         <tr>
-            <td>点数</td>
+            <td>积分</td>
             <td>${student.point}</td>
         </tr>
         <tr>
@@ -57,6 +57,10 @@
         <tr>
             <td>上次充值日期</td>
             <td>${student.lastChargeDate}</td>
+        </tr>
+        <tr>
+            <td>可兑换点数</td>
+            <td>${student.historyPoint}</td>
         </tr>
     </table>
 </div>

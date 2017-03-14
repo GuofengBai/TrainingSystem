@@ -44,8 +44,12 @@
                 <td><input type="text" readonly="readonly" value="${student.level}"></td>
             </tr>
             <tr>
-                <td>点数</td>
+                <td>积分</td>
                 <td><input type="text" readonly="readonly" value="${student.point}"></td>
+            </tr>
+            <tr>
+                <td>可兑换点数</td>
+                <td><input type="text" readonly="readonly" value="${student.historyPoint}"></td>
             </tr>
         </table>
         <input type="submit" value="更改">
