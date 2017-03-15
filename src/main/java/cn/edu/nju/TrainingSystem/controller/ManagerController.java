@@ -22,6 +22,11 @@ public class ManagerController {
     @Autowired
     private InstitutionService institutionService;
 
+    @RequestMapping("/logout")
+    public String logout() {
+        return "redirect:/login";
+    }
+
     @RequestMapping("/analysis")
     public String analysisPage(Model model) {
         model.addAttribute("scount", managerService.getStudentCount());

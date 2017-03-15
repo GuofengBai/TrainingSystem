@@ -67,9 +67,9 @@ public class InstitutionDAOImpl implements InstitutionDAO {
         criteria.setProjection(projectionList);
         Object[] result = (Object[]) criteria.uniqueResult();
         if (Integer.parseInt(result[0] == null ? "" : result[0].toString()) == 0) {
-            institution.setId(1);
+            institution.setId(1000001);
         } else {
-            institution.setId(Integer.parseInt(result[1] == null ? "" : result[1].toString()) + 1);
+            institution.setId(1000000 + Integer.parseInt(result[1] == null ? "" : result[1].toString()) + 1);
         }
         institution.setBalance(0.0);
         sessionFactory.getCurrentSession().save(institution);

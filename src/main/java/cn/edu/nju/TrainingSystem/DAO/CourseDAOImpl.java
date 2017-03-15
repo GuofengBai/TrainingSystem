@@ -28,7 +28,7 @@ public class CourseDAOImpl implements CourseDAO {
 
     public List<Course> getUnselectedList(int studentId) {
         String hql = "select c from Course c where c.id not in " +
-                "(select e.courseId from EnrollRecord e where e.studentId=:sid and e.droped=0) " +
+                "(select e.courseId from EnrollRecord e where e.studentId=:sid) " +
                 "and c.id not in (select d.courseId from DropRecord d where d.studentId=:sid)";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("sid", studentId);

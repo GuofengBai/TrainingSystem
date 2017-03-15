@@ -21,6 +21,7 @@
             <li><a href="<%=request.getContextPath()%>/manager/edit">改课申请</a></li>
             <li><a href="<%=request.getContextPath()%>/manager/payment">付款结算</a></li>
             <li><a href="<%=request.getContextPath()%>/manager/refund">退款审核</a></li>
+            <li><a href="<%=request.getContextPath()%>/manager/logout">登出</a></li>
         </ul>
     </nav>
 </div>

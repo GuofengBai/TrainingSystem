@@ -62,9 +62,9 @@ public class StudentDAOImpl implements StudentDAO {
         criteria.setProjection(projectionList);
         Object[] result = (Object[]) criteria.uniqueResult();
         if (Integer.parseInt(result[0] == null ? "" : result[0].toString()) == 0) {
-            student.setId(1);
+            student.setId(1000001);
         } else {
-            student.setId(Integer.parseInt(result[1] == null ? "" : result[1].toString()) + 1);
+            student.setId(1000000 + Integer.parseInt(result[1] == null ? "" : result[1].toString()) + 1);
         }
         student.setBalance(1000.0);
         student.setLastChargeDate(new Date(System.currentTimeMillis()));
