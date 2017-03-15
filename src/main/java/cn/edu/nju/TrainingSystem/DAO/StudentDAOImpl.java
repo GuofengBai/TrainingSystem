@@ -156,6 +156,7 @@ public class StudentDAOImpl implements StudentDAO {
         Student student = (Student) sessionFactory.getCurrentSession().get(Student.class, id);
         student.setBalance(student.getBalance() + amount);
         student.setLastChargeDate(new Date(System.currentTimeMillis()));
+        student.setState("激活");
         sessionFactory.getCurrentSession().saveOrUpdate(student);
         return true;
     }
